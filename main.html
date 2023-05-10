@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- JQuery 소스 추가했습니다. -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영화 좋아하세요..?/page2</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Gowun Dodum', sans-serif;
+        }
+
+        .mytitle {
+            background-color: rgb(54, 135, 157);
+            color: white;
+
+            height: 300px;
+            width: 700px;
+            background-image: url('https://i.namu.wiki/i/q3vrJ-b-BJ2XsQkqJ4-MgEAAiJpd4vpGij24aQ5HyKRpN85gUCFCOGbRcOhEd3L2NSZ-2KPVxfxOBPvbvfQtko4JCnxAwafZfUL3LMm9k-iCAFc21nxiHHUjjQycHQuZS-gyZO6_g3iEM972_BfDiA.webp');
+            background-position: center;
+            background-size: cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: 0px auto 0px auto;
+        }
+
+        .myposters {
+            width: 1360px;
+            margin: 50px auto 20px auto;
+            align-items: center;
+        }
+
+        .myposter-box {
+            background-color: rgba(218, 229, 188, 0.759);
+
+            width: 250px;
+            height: 350px;
+
+            border: 2px solid #00000060;
+            border-radius: 15px;
+
+            display: inline-block;
+            overflow: hidden;
+
+            margin: 5px 7px 5px 7px
+        }
+
+        .myposter-image {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mybtn {
+            height: 100%;
+            width: 100%;
+            font-size: 30px;
+            border-radius: 12px;
+            border: #00000060;
+        }
+    </style>
+
+    <!-- 최종우 ; 스크립트 추가 작성 -->
+    <script>
+        $(document).ready(function () {
+            listing();
+        });
+
+        function listing() {
+            fetch('/movie').then((res) => res.json()).then((data) => {
+
+                let rows = data['result']
+                
+
+                // 표시할 것만 뽑아서 정리 하면 될듯
+
+                rows.forEach((a) => {
+                    let comment = a['comment']
+                    let title = a['title']
+                    let desc = a['desc']
+                    let image = a['image']
+                    let star = a['star']
+
+                    let star_repeat = '⭐'.repeat(star)
+
+                    let temp_html = `<div class="myposter-box">
+                                        <img src="${image}"
+                                            class="myposter-image" alt="영화 포스터 - 이미지">
+                                    </div>`
+                    $('#myposter').append(temp_html)
+                })
+            })
+        }
+    </script>
+    <!-- 스크립트 끝 -->
+</head>
+
+<body>
+    <div class="mytitle"> </div>
+    <!--영화 추가 버튼-->
+
+    <div class="myposters" id="myposter"> <!--아이디 여기로 옮겼습니다(종우*님이 하신거 제가(준영) 옮김-->
+        <div class="myposter-box">
+            <button type="button" class="mybtn">+영화 </br>추가하기</button>
+        </div>
+
+
+        <!-- 여기에 팝업창 그거 넣어야 할듯 -->
+
+
+        <!-- 영화 포스터 -->
+        <div class="myposter-box"></div>
+        
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+        <div class="myposter-box"></div>
+    </div>
+</body>
+
+</html>
